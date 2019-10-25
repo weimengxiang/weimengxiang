@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: jwy-controller-rest
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: lizhi
+Implementation-Vendor-Id: tj.con
+Build-Jdk: 1.8.0_73
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/jwy-parent/jwy-controller-rest
+Created-By: Maven Integration for Eclipse
+
