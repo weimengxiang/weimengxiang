@@ -19,13 +19,18 @@
          <artifactId>jwy-informationmanage-api</artifactId>
          <version>0.0.1-SNAPSHOT</version>
     </dependency>
-   <!-- controller 模块引入 dtl-api -->
+   <!-- controller 模块引入 dtl-api 对外暴露 rest-->
 	<dependency>
 		 <groupId>dtl-api</groupId>
 		 <artifactId>jwy-dtl-api</artifactId>
 		 <version>0.0.1-SNAPSHOT</version>
 	</dependency>
-	
+	 <!-- controller 模块引用sysnotice-api 对外暴露 rest  -->
+     <dependency>
+	     <groupId>sysnotice-api</groupId>
+ 		 <artifactId>jwy-sysnotice-api</artifactId>
+         <version>0.0.1-SNAPSHOT</version>
+    </dependency>
 	
   </dependencies>
 </project>

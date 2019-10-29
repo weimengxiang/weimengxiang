@@ -23,5 +23,7 @@
 		<module>jwy-controller-rest</module>
 		<module>jwy-dtl-service</module>
 		<module>jwy-dtl-api</module>
+		<module>jwy-sysnotice-api</module>
+		<module>jwy-sysnotice-service</module>
 	</modules>
 </project>
