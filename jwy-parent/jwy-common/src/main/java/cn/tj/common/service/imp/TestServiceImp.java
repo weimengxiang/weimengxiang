@@ -1,8 +1,6 @@
-package cn.tj.serviceImp.yy.oo;
-
-import org.springframework.stereotype.Service;
-
-import cn.tj.serviceapi.TestServiceApi;
+package cn.tj.common.service.imp;
+import cn.tj.common.service.TestServiceApi;
+import com.alibaba.dubbo.config.annotation.Service;
 
 @Service
 public class TestServiceImp implements TestServiceApi {

@@ -1,4 +1,4 @@
-package cn.tj.serviceImp.yy;
+package cn.tj;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
