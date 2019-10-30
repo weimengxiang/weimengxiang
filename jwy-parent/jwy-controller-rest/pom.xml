@@ -7,6 +7,13 @@
   </parent>
   <artifactId>jwy-controller-rest</artifactId>
   <dependencies>
+  <!-- rest开启热部署 -->
+   <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+	</dependency>
    <!-- controller 引用 common-api 对外暴露 rest -->
     <dependency>
    	   <groupId>common-api</groupId>

@@ -1,13 +1,16 @@
 package cn.tj.common.service.imp;
-import cn.tj.common.service.TestServiceApi;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
+import cn.tj.common.mapper.TestMapper;
+import cn.tj.common.service.TestServiceApi;
 
 @Service
 public class TestServiceImp implements TestServiceApi {
-
-	public int test(int paran) {
-		// TODO Auto-generated method stub
-		return paran;
+    @Autowired
+    TestMapper testMapper;
+	public String test(int paran) {
+		
+		return testMapper.getUser();
 	}
 
 }

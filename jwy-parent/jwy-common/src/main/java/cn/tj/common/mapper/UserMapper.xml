@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tj.common.mapper.UserMapper">
+   
+   <select id="getUser" resultType="java.lang.String">
+      select username from user_login
+   </select>
+   <select id="findOne" resultType="cn.tj.common.bean.UserBean">
+     select * from user_login where uuid = #{uuid}
+   </select>
+   
+</mapper>
