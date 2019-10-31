@@ -9,4 +9,8 @@
      select * from user_login where uuid = #{uuid}
    </select>
    
+   <select id="getTestpage" resultType="cn.tj.common.bean.UserBean">
+     select * from  user_login
+   </select>
+   
 </mapper>

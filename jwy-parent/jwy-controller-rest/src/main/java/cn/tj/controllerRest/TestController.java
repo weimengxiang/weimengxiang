@@ -1,15 +1,25 @@
 package cn.tj.controllerRest;
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.tj.jwy.dtl.service.DtlTestService;
+
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 import cn.tj.common.bean.UserBean;
 import cn.tj.common.service.TestServiceApi;
 import cn.tj.common.service.UserServiceI;
+import cn.tj.intercapt.RequestInterceptor;
 
 @RestController
 public class TestController {
+	private static final Logger LOG = LogManager.getLogger(TestController.class);
 	@Reference
 	TestServiceApi testserviceapi;
 	@Reference
@@ -27,6 +37,19 @@ public class TestController {
 	public UserBean getRedis(){
 		return userservicei.getUserById(1);
 	}
+	 @RequestMapping(value="/common/pagehalder")
+	  public PageInfo<UserBean> gettest1(@RequestParam(value="pageNum",defaultValue="1")int pageNum,@RequestParam(value="pageSize",defaultValue="15")int pageSize){
+	      PageHelper.startPage(pageNum, pageSize);
+	      List<UserBean> res_list = userservicei.getTestpage();
+	      PageInfo<UserBean> pageinfo = new PageInfo<>(res_list);
+	      LOG.info("当前页数："+pageinfo.getPageNum());
+	      LOG.info("每页数量："+pageinfo.getPageSize());
+	      LOG.info("当前页面数量："+pageinfo.getSize());
+	      LOG.info("总记录数："+pageinfo.getTotal());
+	      LOG.info("总页数："+pageinfo.getPages());
+		//  redisTemplate.opsForValue().set("mane", "nihao");
+		  return pageinfo;
+	  }
 	
 	@RequestMapping(value="/dtl/hello")
 	public int getDtl(){

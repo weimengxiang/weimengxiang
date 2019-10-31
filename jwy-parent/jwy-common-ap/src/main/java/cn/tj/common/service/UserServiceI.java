@@ -1,5 +1,7 @@
 package cn.tj.common.service;
 
+import java.util.List;
+
 import cn.tj.common.bean.UserBean;
 
 public interface UserServiceI {
@@ -9,5 +11,7 @@ public interface UserServiceI {
     UserBean update(UserBean user);
 
     String del(int id);
+
+	List<UserBean> getTestpage();
 
 }

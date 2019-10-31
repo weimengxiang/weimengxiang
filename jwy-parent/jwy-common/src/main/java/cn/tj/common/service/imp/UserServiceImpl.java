@@ -1,5 +1,7 @@
 package cn.tj.common.service.imp;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -38,6 +40,12 @@ public class UserServiceImpl implements UserServiceI {
         userMapper.delete(id);
         return "删除成功！！！！";
     }
+
+	@Override
+	public List<UserBean> getTestpage() {
+		// TODO Auto-generated method stub
+		return userMapper.getTestpage();
+	}
     
     
 

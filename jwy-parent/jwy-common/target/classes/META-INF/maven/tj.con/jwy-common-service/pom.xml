@@ -13,6 +13,12 @@
 	  	   <artifactId>jwy-common-api</artifactId>
 	       <version>0.0.1-SNAPSHOT</version>
 	    </dependency>
+	    <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency> 
 	  
    
   </dependencies>

@@ -35,7 +35,7 @@ public class RedisConfig extends CachingConfigurerSupport {
 	
 	private static final Logger LOG = LogManager.getLogger(RedisConfig.class);
     /**
-    * 自定义redis key值生成策略
+    * 自定义redis key值生成策略 ,现在使用包+类+方法+UUID的生成方式
     */
     @Bean
     @Override
