@@ -38,6 +38,11 @@
  		 <artifactId>jwy-sysnotice-api</artifactId>
          <version>0.0.1-SNAPSHOT</version>
     </dependency>
-	
+	   <!-- controller 模块引用bdspark-api 对外暴露 rest-->
+	<dependency>
+	   	<groupId>bdspark-api</groupId>
+ 		<artifactId>jwy-bdspark-api</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+	</dependency>
   </dependencies>
 </project>

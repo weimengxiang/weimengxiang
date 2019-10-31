@@ -25,5 +25,7 @@
 		<module>jwy-dtl-api</module>
 		<module>jwy-sysnotice-api</module>
 		<module>jwy-sysnotice-service</module>
+		<module>jwy-bdspark-api</module>
+		<module>jwy-bdspqrk-service</module>
 	</modules>
 </project>
