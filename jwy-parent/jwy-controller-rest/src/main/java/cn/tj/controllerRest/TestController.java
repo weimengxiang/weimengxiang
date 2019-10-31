@@ -39,16 +39,16 @@ public class TestController {
 	}
 	 @RequestMapping(value="/common/pagehalder")
 	  public PageInfo<UserBean> gettest1(@RequestParam(value="pageNum",defaultValue="1")int pageNum,@RequestParam(value="pageSize",defaultValue="15")int pageSize){
-	      PageHelper.startPage(pageNum, pageSize);
-	      List<UserBean> res_list = userservicei.getTestpage();
-	      PageInfo<UserBean> pageinfo = new PageInfo<>(res_list);
-	      LOG.info("当前页数："+pageinfo.getPageNum());
+	  
+		 PageInfo<UserBean> res_list = userservicei.getTestpage(pageNum, pageSize);
+	   
+	      /*LOG.info("当前页数："+pageinfo.getPageNum());
 	      LOG.info("每页数量："+pageinfo.getPageSize());
 	      LOG.info("当前页面数量："+pageinfo.getSize());
 	      LOG.info("总记录数："+pageinfo.getTotal());
-	      LOG.info("总页数："+pageinfo.getPages());
+	      LOG.info("总页数："+pageinfo.getPages());*/
 		//  redisTemplate.opsForValue().set("mane", "nihao");
-		  return pageinfo;
+		  return res_list;
 	  }
 	
 	@RequestMapping(value="/dtl/hello")

@@ -1,6 +1,6 @@
 package cn.tj.common.service;
 
-import java.util.List;
+import com.github.pagehelper.PageInfo;
 
 import cn.tj.common.bean.UserBean;
 
@@ -12,6 +12,6 @@ public interface UserServiceI {
 
     String del(int id);
 
-	List<UserBean> getTestpage();
+	PageInfo<UserBean> getTestpage(int pageNum, int pageSize);
 
 }

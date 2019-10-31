@@ -2,12 +2,17 @@ package cn.tj.common.service.imp;
 
 import java.util.List;
 
+import javax.jws.soap.SOAPBinding.Use;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 import cn.tj.common.bean.UserBean;
 import cn.tj.common.mapper.UserMapper;
 import cn.tj.common.service.UserServiceI;
@@ -42,9 +47,12 @@ public class UserServiceImpl implements UserServiceI {
     }
 
 	@Override
-	public List<UserBean> getTestpage() {
+	public PageInfo<UserBean> getTestpage(int pageNum,int pageSize) {
 		// TODO Auto-generated method stub
-		return userMapper.getTestpage();
+		PageHelper.startPage(pageNum, pageSize);
+		List<UserBean> list = userMapper.getTestpage();
+		 PageInfo<UserBean> pageinfo = new PageInfo<>(list);
+		return pageinfo;
 	}
     
     
