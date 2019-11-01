@@ -3,8 +3,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.tj.jwy.dtl.service.DtlTestService;
+
 import com.alibaba.dubbo.config.annotation.Reference;
+
+import cn.tj.dtl.service.DtlTestService;
 
 @RestController
 public class TestDtlController {

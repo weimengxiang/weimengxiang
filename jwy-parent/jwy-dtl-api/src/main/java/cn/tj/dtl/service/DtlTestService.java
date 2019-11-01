@@ -1,4 +1,4 @@
-package org.tj.jwy.dtl.service;
+package cn.tj.dtl.service;
 
 public interface DtlTestService {
 

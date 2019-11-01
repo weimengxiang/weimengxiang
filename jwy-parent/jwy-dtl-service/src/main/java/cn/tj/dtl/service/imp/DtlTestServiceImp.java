@@ -1,8 +1,8 @@
-package org.tj.jwy.dtl.service.imp;
-
-import org.tj.jwy.dtl.service.DtlTestService;
+package cn.tj.dtl.service.imp;
 
 import com.alibaba.dubbo.config.annotation.Service;
+
+import cn.tj.dtl.service.DtlTestService;
 
 @Service
 public class DtlTestServiceImp implements DtlTestService {
