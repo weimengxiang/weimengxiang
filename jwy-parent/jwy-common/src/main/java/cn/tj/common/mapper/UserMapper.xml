@@ -5,11 +5,11 @@
    <select id="getUser" resultType="java.lang.String">
       select username from user_login
    </select>
-   <select id="findOne" resultType="cn.tj.common.bean.UserBean">
+   <select id="findOne" resultType="cn.tj.common.bean.UserLoginBean">
      select * from user_login where uuid = #{uuid}
    </select>
    
-   <select id="getTestpage" resultType="cn.tj.common.bean.UserBean">
+   <select id="getTestpage" resultType="cn.tj.common.bean.UserLoginBean">
      select * from  user_login
    </select>
    

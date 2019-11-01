@@ -12,7 +12,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import cn.tj.common.bean.UserBean;
+import cn.tj.common.bean.UserLoginBean;
 import cn.tj.common.mapper.UserMapper;
 import cn.tj.common.service.UserServiceI;
 import cn.tj.common.util.aop.AnnotationService;
@@ -27,14 +27,14 @@ public class UserServiceImpl implements UserServiceI {
   //  @Cacheable(key="'userCache'")
     @Cacheable
     @Override
-    public UserBean getUserById(int i) {
+    public UserLoginBean getUserById(int i) {
         System.out.println("执行这里，说明缓存中读取不到数据，直接读取数据库....");
         return userMapper.findOne(i);
     }
 
     @CachePut(key="'userCache'")
     @Override
-    public UserBean update(UserBean user) {
+    public UserLoginBean update(UserLoginBean user) {
         System.out.println("执行这里，更新数据库，更新缓存....");
         return userMapper.save(user);
     }
@@ -47,11 +47,11 @@ public class UserServiceImpl implements UserServiceI {
     }
     @AnnotationService
 	@Override
-	public PageInfo<UserBean> getTestpage(int pageNum,int pageSize) {
+	public PageInfo<UserLoginBean> getTestpage(int pageNum,int pageSize) {
 		// TODO Auto-generated method stub
 		PageHelper.startPage(pageNum, pageSize);
-		List<UserBean> list = userMapper.getTestpage();
-		 PageInfo<UserBean> pageinfo = new PageInfo<>(list);
+		List<UserLoginBean> list = userMapper.getTestpage();
+		 PageInfo<UserLoginBean> pageinfo = new PageInfo<>(list);
 		return pageinfo;
 	}
     

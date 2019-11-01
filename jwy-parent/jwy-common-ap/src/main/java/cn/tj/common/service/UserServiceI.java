@@ -2,16 +2,16 @@ package cn.tj.common.service;
 
 import com.github.pagehelper.PageInfo;
 
-import cn.tj.common.bean.UserBean;
+import cn.tj.common.bean.UserLoginBean;
 
 public interface UserServiceI {
 
-    UserBean getUserById(int i);
+    UserLoginBean getUserById(int i);
 
-    UserBean update(UserBean user);
+    UserLoginBean update(UserLoginBean user);
 
     String del(int id);
 
-	PageInfo<UserBean> getTestpage(int pageNum, int pageSize);
+	PageInfo<UserLoginBean> getTestpage(int pageNum, int pageSize);
 
 }

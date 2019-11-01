@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
 
-import cn.tj.common.bean.UserBean;
+import cn.tj.common.bean.UserLoginBean;
 import cn.tj.common.service.TestServiceApi;
 import cn.tj.common.service.UserServiceI;
 
@@ -26,13 +26,13 @@ public class TestCommonController {
 	}
 	//测试redis注解缓存
 	@RequestMapping(value="/common/getRedis")
-	public UserBean getRedis(){
+	public UserLoginBean getRedis(){
 		return userservicei.getUserById(1);
 	}
 	@RequestMapping(value="/common/pagehalder")
-	public PageInfo<UserBean> gettest1(@RequestParam(value="pageNum",defaultValue="1")int pageNum,@RequestParam(value="pageSize",defaultValue="15")int pageSize){
+	public PageInfo<UserLoginBean> gettest1(@RequestParam(value="pageNum",defaultValue="1")int pageNum,@RequestParam(value="pageSize",defaultValue="15")int pageSize){
 	  
-		  PageInfo<UserBean> res_list = userservicei.getTestpage(pageNum, pageSize);
+		  PageInfo<UserLoginBean> res_list = userservicei.getTestpage(pageNum, pageSize);
 		return res_list;
 	  }
 	
