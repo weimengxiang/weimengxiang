@@ -14,12 +14,12 @@
   	 where 
   	 username = #{username} 
   	 and password = #{password} 
+  	 limit 1
    </select>
-   <!-- useGeneratedKeys="true" keyProperty="userid"  -->
    <insert id="register">
-    <selectKey resultType="java.lang.Short" order="AFTER" keyProperty="userid">
-	  SELECT LAST_INSERT_ID() AS id
-	</selectKey>
+    <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="userid" >
+	   SELECT LAST_INSERT_ID()AS　userid
+	</selectKey> -->
      insert into user_login(
    		  username,password,logindate,registerdate
      )
@@ -30,4 +30,8 @@
          sysdate()
      )
    </insert>
+   <select id="nspectUserName" resultType="java.lang.Integer">
+     <include refid="user_login_param"/>
+     where username = #{username} limit 1
+   </select>
 </mapper>

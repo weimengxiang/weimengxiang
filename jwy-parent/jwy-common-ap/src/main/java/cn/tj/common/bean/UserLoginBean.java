@@ -2,14 +2,18 @@ package cn.tj.common.bean;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
+
 public class UserLoginBean implements Serializable {
 	/**
 	 *  登陆实体类
 	 */
 private static final long serialVersionUID = 1L;
 
-	public int userid ;
+	public int userid;
+	@NotBlank(message="用户名不能为空")
 	public String username;
+	@NotBlank(message="密码不能为空！")
 	public String password;
 	public String logindate;
 	public String registerdate;

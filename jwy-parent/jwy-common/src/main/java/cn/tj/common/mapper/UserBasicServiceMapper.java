@@ -11,6 +11,8 @@ public interface UserBasicServiceMapper {
 	public UserLoginBean userlogin(@Param("username")String username,@Param("password")String password);
     //注册
 	public int register(@Param("userbean")UserLoginBean userbean);
+	
+	public int nspectUserName(@Param("username")String username); //校验
 
 
 }

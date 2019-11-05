@@ -1,21 +1,20 @@
 package cn.tj.common.service.imp;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-
 import cn.tj.common.bean.UserLoginBean;
 import cn.tj.common.mapper.UserMapper;
 import cn.tj.common.service.UserServiceI;
-import cn.tj.common.util.aop.AnnotationService;
+import cn.tj.common.util.HandleResult;
+import cn.tj.common.util.annotation.AnnotationService;
+import cn.tj.common.util.annotation.ApiIdempotent;
 
 @Service
 @CacheConfig(cacheNames="users")
@@ -24,7 +23,7 @@ public class UserServiceImpl implements UserServiceI {
     @Autowired
     private UserMapper userMapper;
     
-  //  @Cacheable(key="'userCache'")
+  //@Cacheable(key="'userCache'")
     @Cacheable
     @Override
     public UserLoginBean getUserById(int i) {
@@ -45,14 +44,17 @@ public class UserServiceImpl implements UserServiceI {
         userMapper.delete(id);
         return "删除成功！！！！";
     }
+    
     @AnnotationService
+	@ApiIdempotent
 	@Override
-	public PageInfo<UserLoginBean> getTestpage(int pageNum,int pageSize) {
+	public String getTestpage(int pageNum,int pageSize) {
 		// TODO Auto-generated method stub
-		PageHelper.startPage(pageNum, pageSize);
-		List<UserLoginBean> list = userMapper.getTestpage();
+		 PageHelper.startPage(pageNum, pageSize);
+		 List<UserLoginBean> list = userMapper.getTestpage();
 		 PageInfo<UserLoginBean> pageinfo = new PageInfo<>(list);
-		return pageinfo;
+		 
+		return HandleResult.ResultData("100", "请求成功",pageinfo);
 	}
     
     

@@ -1,4 +1,4 @@
-package cn.tj.common.util.aop;
+package cn.tj.common.util.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

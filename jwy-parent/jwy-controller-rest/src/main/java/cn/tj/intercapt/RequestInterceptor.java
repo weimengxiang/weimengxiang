@@ -51,8 +51,6 @@ public class RequestInterceptor implements HandlerInterceptor {
 		
 		boolean bool = true;
 		LOG.info("请求方法安全认证拦截...............");
-	
-		
 		bool = true;
 		return bool;
 	}

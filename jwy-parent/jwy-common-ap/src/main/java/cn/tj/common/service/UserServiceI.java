@@ -1,7 +1,4 @@
 package cn.tj.common.service;
-
-import com.github.pagehelper.PageInfo;
-
 import cn.tj.common.bean.UserLoginBean;
 
 public interface UserServiceI {
@@ -12,6 +9,6 @@ public interface UserServiceI {
 
     String del(int id);
 
-	PageInfo<UserLoginBean> getTestpage(int pageNum, int pageSize);
+	String getTestpage(int pageNum, int pageSize);
 
 }

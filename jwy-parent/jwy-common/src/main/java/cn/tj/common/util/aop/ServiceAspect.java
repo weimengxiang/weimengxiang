@@ -33,10 +33,10 @@ public class ServiceAspect {
 	
 	
 	//切点位置
-	@Pointcut("@annotation(cn.tj.common.util.aop.AnnotationService)")
+	@Pointcut("@annotation(cn.tj.common.util.annotation.AnnotationService)")
 //	@Around("@annotation(org.wmx.jwy.commons.utilauto.AnnotationService)")
 	public void ServiceAspectinit(){
-      Log.info("切面执行");
+      Log.info("注解对service层的调用拦截");
 	}
 	
 	@Before("ServiceAspectinit()")
