@@ -14,7 +14,6 @@ import cn.tj.common.mapper.UserMapper;
 import cn.tj.common.service.UserServiceI;
 import cn.tj.common.util.HandleResult;
 import cn.tj.common.util.annotation.AnnotationService;
-import cn.tj.common.util.annotation.ApiIdempotent;
 
 @Service
 @CacheConfig(cacheNames="users")
@@ -46,7 +45,6 @@ public class UserServiceImpl implements UserServiceI {
     }
     
     @AnnotationService
-	@ApiIdempotent
 	@Override
 	public String getTestpage(int pageNum,int pageSize) {
 		// TODO Auto-generated method stub

@@ -1,13 +1,12 @@
 package cn.tj.controllerRest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.alibaba.dubbo.config.annotation.Reference;
-
+import com.alibaba.fastjson.JSONObject;
 import cn.tj.common.bean.UserLoginBean;
-import cn.tj.common.service.TokenService;
 import cn.tj.common.service.UserBasicService;
 
 @RestController
@@ -17,12 +16,16 @@ public class UserBasicController {
 	UserBasicService userbasicservice;
 	
 	@RequestMapping(value="/userlogin")
-	public String userlogin(String username,String password){
+	public JSONObject userlogin(String username,String password,HttpServletRequest httpservletrequest){
 		
 	    //返回登陆标志
-		String status = userbasicservice.userlogin(username,password);
-	
-		return status;
+		Map status = userbasicservice.userlogin(username,password);
+		httpservletrequest.getSession().setAttribute("token", status.get("token"));
+		JSONObject jsb = new JSONObject();
+		jsb.put("token", status.get("token"));
+		jsb.put("retmsg", status.get("retmsg"));
+		jsb.put("retcode", status.get("retcode"));
+		return jsb;
 	}
 	@RequestMapping(value="/userregister")
 	public String register(UserLoginBean userbean){

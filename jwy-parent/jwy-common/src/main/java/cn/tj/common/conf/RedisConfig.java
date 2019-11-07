@@ -52,7 +52,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     }
     
     @SuppressWarnings("unchecked")
-	@Bean
+	
     public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
       ObjectMapper om = new ObjectMapper();
       om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);

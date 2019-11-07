@@ -1,18 +1,23 @@
 package cn.tj.common.service.imp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.fastjson.JSONObject;
 
 import cn.tj.common.bean.UserLoginBean;
 import cn.tj.common.mapper.UserBasicServiceMapper;
 import cn.tj.common.service.TokenService;
 import cn.tj.common.service.UserBasicService;
 import cn.tj.common.util.annotation.AnnotationService;
-import cn.tj.common.util.annotation.ApiIdempotent;
+
 
 
 @Service
@@ -30,17 +35,24 @@ public class UserBasicServiceImp implements UserBasicService {
 	private StringRedisTemplate redistemplate;
 	@Autowired
 	TokenService  tokenservice;
-	
+	@SuppressWarnings("unchecked")
 	@Override
-	@AnnotationService  
-	public String userlogin(String username,String password) {
-		UserLoginBean user = userbasicservicemapper.userlogin(username,password);
+	//@AnnotationService  
+	public Map userlogin(String username,String password) {
+		Map map = new HashMap();
 		String token = tokenservice.createToken();
+		UserLoginBean user = userbasicservicemapper.userlogin(username,password);
 		redistemplate.opsForValue().set(token, token);
 		if(user != null){
-			return LOGIN_SUCCESS;	
+			map.put("retcode", "成功");
+			map.put("token", token);
+			map.put("retmsg",LOGIN_SUCCESS);
+			return map;	
 		}
-		return LOGIN_FAIL;
+		map.put("retcode", "失败");
+		map.put("token", token);
+		map.put("retmsg",LOGIN_FAIL);
+		return map;
 	}
 	@Override
 	@AnnotationService
@@ -50,6 +62,7 @@ public class UserBasicServiceImp implements UserBasicService {
 		SDF.format(new Date());
 		userbean.setPassword("123456");
 		userbean.setUsername("wmx");
+		
         int ishave = userbasicservicemapper.nspectUserName(userbean.getUsername());
 		if(ishave == 0){
 			//插入并返回 userid 主键

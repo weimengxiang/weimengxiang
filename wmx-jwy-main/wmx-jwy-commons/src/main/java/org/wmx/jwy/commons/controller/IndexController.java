@@ -14,7 +14,7 @@ public class IndexController {
     private UserServiceI userService;
     @RequestMapping(value = "/get")
     public UserBean get() {
-    	UserBean user = userService.getUserById(1);
+    	UserBean user = userService.getUserById(23);
         return user;
 
     }

@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.util.StringUtil;
 
+import cn.tj.annocation.ApiIdempotent;
+
 public class ApiIdempotentInterceptor implements HandlerInterceptor{
 	private static final Logger LOG = LogManager.getLogger(ApiIdempotentInterceptor.class);
 	@Autowired
@@ -28,15 +30,29 @@ public class ApiIdempotentInterceptor implements HandlerInterceptor{
 		}
 		HandlerMethod handlemethod = (HandlerMethod) handler;
 		Method method = handlemethod.getMethod();
-		ApiIdempotent apiidempotent = method.getAnnotations();
-		tokenstr  =  request.getHeader(Token_NAME);
-		if(StringUtil.isEmpty(tokenstr)){
-			tokenstr =  request.getParameter(Token_NAME);
+	//	ApiIdempotent apiidempotent = method.getAnnotations();
+		boolean apiidempotent = method.isAnnotationPresent(ApiIdempotent.class);
+		if(apiidempotent){
+			tokenstr  =  request.getHeader(Token_NAME);
+			if(StringUtil.isEmpty(tokenstr)){
+				tokenstr =  request.getParameter(Token_NAME);
+				if(checktoken(tokenstr)){
+					LOG.info("幂等检验通过!");
+					return true;
+				}else{
+					LOG.info("幂等检验失败，请勿重复提交!");
+					return false;
+				}
+			}
 			if(checktoken(tokenstr)){
 				LOG.info("幂等检验通过!");
 				return true;
+			}else{
+				LOG.info("幂等检验失败，请勿重复提交!");
+				return false;
 			}
-		}	return HandlerInterceptor.super.preHandle(request, response, handler);
+		}
+		return true;
 	}
 
 	@Override
@@ -55,9 +71,16 @@ public class ApiIdempotentInterceptor implements HandlerInterceptor{
 	
 	private boolean checktoken(String key){
 		boolean ishave = true;
+		if(null == key){
+			LOG.info("请求的handle中的token为空！请求失败！");
+			return false;
+		}
 		String redisvalue = redistemplate.opsForValue().get(key);
 		if(StringUtil.isEmpty(redisvalue)){
 			ishave = false;
+		}else{
+			redistemplate.delete(key);
+			LOG.info("key:"+key+"清除完成！");
 		}
 		return ishave;
 		
