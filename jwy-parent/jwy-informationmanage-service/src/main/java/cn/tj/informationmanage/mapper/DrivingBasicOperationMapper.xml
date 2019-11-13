@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tj.informationmanage.mapper.DrivingBasicOperationMapper">
+   <sql id="operationParam">
+	   drivingid_name,
+	   driving_person_name,
+	   driving_registered_address,
+	   driving_number,
+	   driving_registered_amount,
+	   updatedate
+   </sql>
+   <sql id="operationParamIncludeId">
+	   drivingid,
+	   drivingid_name,
+	   driving_person_name,
+	   driving_registered_address,
+	   driving_number,
+	   driving_registered_amount,
+	   updatedate
+   </sql>
+   <insert id="AddDriving">
+	   insert into driving_table(<include refid="operationParam"/>)
+	   value(
+	   #{drivingvo.drivingid_name},
+	   #{drivingvo.driving_person_name},
+	   #{drivingvo.driving_registered_address},
+	   #{drivingvo.driving_number},
+	   #{drivingvo.driving_registered_amount},
+	   #{drivingvo.updatedate}
+	   )
+   </insert>
+   <delete id="DeleteDriving">
+   delete from driving_table
+	   <where>
+		   <choose>
+			   <when test="drivingid != null or drivingid != ''">
+				 drivingid = #{drivingid,jdbcType=INTEGER}
+			   </when>
+			   <otherwise>
+			     drivingid = '**'
+			   </otherwise>
+		   </choose>
+	   </where>
+   </delete>
+   <delete id="BatchDeleteDriving">
+   delete from driving_table
+   where drivingid in 
+   <foreach collection="list" item="drivingid" open="(" separator="," close=")">
+    {drivingid}
+   </foreach>
+   </delete>
+   
+   <select id="QueryDrivingById" resultType="">
+     select <include refid="operationParamIncludeId"/>
+    	 from driving_table
+     where
+     	 drivingid = #{drivingid,jdbcType=INTEGER}
+   </select>
+   <select id="QueryDrivingCurrency" resultType="">
+     select <include refid="operationParamIncludeId"/>
+   		 from driving_table
+     where 
+     
+   </select>
+</mapper>
