@@ -50,6 +50,12 @@ public class DrivingBasicOperationServiceImp implements DrivingBasicOperationSer
 	public void UpdateDriving(DrivingVO drivingvo) {
 		drivingbasicoperationmapper.UpdateDriving(drivingvo);		
 	}
+
+	@Override
+	public int BatchAddDriving(List<DrivingVO> drivingvolist) {
+		int size = drivingbasicoperationmapper.BatchAddDriving(drivingvolist);
+		return size;
+	}
 	
 
 }

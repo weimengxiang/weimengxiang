@@ -21,6 +21,8 @@ public interface DrivingBasicOperationService{
 	public List<DrivingVO> QueryDrivingCurrency(DrivingVO drivingvo);
 	//更新修改
 	public void UpdateDriving(DrivingVO drivingvo);
+	//批量新增
+	public int BatchAddDriving(List<DrivingVO> list_drivingvo);
 	
 	
 

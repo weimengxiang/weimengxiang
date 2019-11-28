@@ -114,4 +114,20 @@
          </choose>
       </where>
    </update>
+   <insert id="BatchAddDriving" parameterType="java.util.List">
+   		<selectKey resultType="java.util.Integer" keyProperty="drivingid" order="AFTER">
+   			SELECT LAST_INSERT_ID()
+   		</selectKey>
+   		insert into driving_table(<include refid="operationParam"/>)
+   		values(
+   			<foreach collection="list" item="drivingvolist" separator=",">
+   				#{drivingvolist.drivingid_name},
+   				#{drivingvolist.driving_person_name},
+   				#{drivingvolist.driving_registered_address},
+   				#{drivingvolist.driving_number},
+   				#{drivingvolist.driving_registered_amount},
+                sysdate()   				
+   			</foreach>
+   		)
+   </insert>
 </mapper>

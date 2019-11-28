@@ -49,8 +49,9 @@ public class CoachBasicOperationServiceImp implements CoachBasicOperationService
 	}
 
 	@Override
-	public void BatchAddCoach(List<CoachVO> list) {
-		coachbasicoperationmapper.BatchAddCoach(list);
+	public int BatchAddCoach(List<CoachVO> list) {
+		int size = coachbasicoperationmapper.BatchAddCoach(list);
+		return size;
 	}
 
 }

@@ -22,6 +22,6 @@ public interface CoachBasicOperationMapper {
 
 	void UpdateCoach(@Param("coachvo")CoachVO coachvo);
 	
-	void BatchAddCoach(@Param("coachvo_list")List<CoachVO> coachvo_list);
+	int BatchAddCoach(@Param("coachvo_list")List<CoachVO> coachvo_list);
 
 }

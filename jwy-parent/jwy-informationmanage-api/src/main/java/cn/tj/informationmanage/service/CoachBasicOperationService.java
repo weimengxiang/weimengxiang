@@ -23,5 +23,5 @@ public interface CoachBasicOperationService {
 		//更新修改
 		public void UpdateCoach(CoachVO coachvo);
 		//批量新增
-		public void BatchAddCoach(List<CoachVO> list);
+		public int BatchAddCoach(List<CoachVO> list);
 }

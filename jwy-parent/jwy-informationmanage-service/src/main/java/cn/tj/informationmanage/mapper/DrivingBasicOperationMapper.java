@@ -22,4 +22,8 @@ public interface DrivingBasicOperationMapper {
 
 	void UpdateDriving(@Param("drivingvo")DrivingVO drivingvo);
 
+	int BatchAddDriving(@Param("drivingvolist")List<DrivingVO> drivingvolist);
+
+	
+
 }
