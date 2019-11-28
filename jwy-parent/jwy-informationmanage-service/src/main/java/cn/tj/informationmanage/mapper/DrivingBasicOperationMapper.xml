@@ -115,7 +115,7 @@
       </where>
    </update>
    <insert id="BatchAddDriving" parameterType="java.util.List">
-   		<selectKey resultType="java.util.Integer" keyProperty="drivingid" order="AFTER">
+   		<selectKey resultType="java.lang.Integer" keyProperty="drivingid" order="AFTER">
    			SELECT LAST_INSERT_ID()
    		</selectKey>
    		insert into driving_table(<include refid="operationParam"/>)

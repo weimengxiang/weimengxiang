@@ -109,7 +109,7 @@
 	   </set>
 	</update>
 	<insert id="BatchAddCoach"  parameterType="java.util.List">
-	   <selectKey resultType="java.util.Integer" keyProperty="coachid" order="AFTER">
+	   <selectKey resultType="java.lang.Integer" keyProperty="coachid" order="AFTER">
 	      select LAST_INSERT_ID();
 	   </selectKey>
 		insert into coach_table(<include refid="operationParam"/>)
