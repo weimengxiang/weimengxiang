@@ -50,16 +50,68 @@
    </foreach>
    </delete>
    
-   <select id="QueryDrivingById" resultType="">
+   <select id="QueryDrivingById" resultType="java.util.List">
      select <include refid="operationParamIncludeId"/>
     	 from driving_table
      where
      	 drivingid = #{drivingid,jdbcType=INTEGER}
    </select>
-   <select id="QueryDrivingCurrency" resultType="">
+   <select id="QueryDrivingCurrency" resultType="java.util.List">
      select <include refid="operationParamIncludeId"/>
    		 from driving_table
-     where 
-     
+     <where>
+        1 = 1
+        <choose>
+           <when test="drivingvo.drivingid_name!=null or drivingvo.drivingid_name!=''">
+            and drivingid_name = #{drivingvo.drivingid_name}
+           </when>
+           <when test="drivingvo.driving_person_name!=null or drivingvo.driving_person_name!=''">
+            and driving_person_name = #{drivingvo.driving_person_name}
+           </when>
+           <when test="drivingvo.driving_registered_address!=null or drivingvo.driving_registered_address!=''">
+            and driving_registered_address = #{drivingvo.driving_registered_address}
+           </when>
+           <when test="drivingvo.driving_number!=null or drivingvo.driving_number!=''">
+            and driving_number = #{drivingvo.driving_number}
+           </when>
+           <when test="drivingvo.driving_registered_amount!=null or drivingvo.driving_registered_amount!=''">
+            and driving_registered_amount = #{drivingvo.driving_registered_amount}
+           </when>
+           <otherwise>
+           
+           </otherwise>
+        </choose>
+     </where> 
    </select>
+   <update id="UpdateDriving">
+      update driving_table dt 
+      <set>
+	      <if test="drivingvo.drivingid_name != null or drivingvo.drivingid_name != ''">
+	       dt.drivingid_name = #{drivingvo.drivingid_name},
+	      </if>
+          <if test="drivingvo.driving_person_name != null or drivingvo.driving_person_name != ''">
+           dt.driving_person_name = #{drivingvo.driving_person_name},
+          </if>
+          <if test="drivingvo.driving_registered_address != null or drivingvo.driving_registered_address != ''">
+           dt.driving_registered_address = #{drivingvo.driving_registered_address},
+          </if>
+          <if test="drivingvo.driving_number != null or drivingvo.driving_number !=''">
+           dt.driving_number = #{drivingvo.driving_number},
+          </if>
+          <if test="drivingvo.driving_registered_amount != null or drivingvo.driving_registered_amount !=''">
+           dt.driving_registered_amount = #{drivingvo.driving_registered_amount},
+          </if>
+          dt.updatedate = sysdate()
+      </set>
+      <where>
+         <choose>
+           <when test="drivingvo.drivingid !=null or drivingvo.drivingid != ''">
+             dt.drivingid = #{drivingvo.drivingid}
+           </when>
+           <otherwise>
+             1&lt;&gt;1
+           </otherwise>
+         </choose>
+      </where>
+   </update>
 </mapper>

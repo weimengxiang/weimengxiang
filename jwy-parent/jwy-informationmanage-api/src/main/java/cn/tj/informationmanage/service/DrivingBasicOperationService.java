@@ -3,8 +3,10 @@ package cn.tj.informationmanage.service;
 import java.util.List;
 
 import cn.tj.informationmanage.bean.DrivingVO;
-/*
- * 管理机构的基本操作
+/**
+ * @weimengxiang
+ * 
+ * 驾校信息基本操作及管理公共接口
  */
 public interface DrivingBasicOperationService{
 	//新增驾校

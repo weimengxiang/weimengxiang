@@ -6,10 +6,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.alibaba.dubbo.config.annotation.Service;
+
 import cn.tj.informationmanage.bean.DrivingVO;
 import cn.tj.informationmanage.mapper.DrivingBasicOperationMapper;
 import cn.tj.informationmanage.service.DrivingBasicOperationService;
 
+@Service
 public class DrivingBasicOperationServiceImp implements DrivingBasicOperationService{
     @Autowired
     DrivingBasicOperationMapper drivingbasicoperationmapper;

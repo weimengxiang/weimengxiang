@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tj.informationmanage.mapper.CoachBasicOperationMapper">
+	<sql id="operationParam">
+		drivingid,
+		coach_age,
+		coach_address,
+		coach_sex,
+		coach_idcard,
+		coach_number,
+		coach_work_time,
+		updatedate
+	</sql>   
+	<sql id="operationParamIncludeId">
+	    coachid,
+		drivingid,
+		coach_age,
+		coach_address,
+		coach_sex,
+		coach_idcard,
+		coach_number,
+		coach_work_time,
+		updatedate
+	</sql> 
+	<insert id="AddCoach">
+	    insert into coach_table(<include refid="operationParam"/>)
+	    value(
+	     #{coachvo.drivingid}, 
+	     #{coachvo.coach_age}, 
+	     #{coachvo.coach_address}, 
+	     #{coachvo.coach_sex}, 
+	     #{coachvo.coach_idcard}, 
+	     #{coachvo.coach_number}, 
+	     #{coachvo.coach_work_time},
+	     sysdate();
+	    )
+	</insert>
+	<delete id="DeleteCoachById">
+	  delete from coach_table 
+	  <where>
+	     <choose>
+	       <when test="coahcid != null or coahcid != ''">
+	    	   coahcid = #{coahcid}
+	       </when>
+	       <otherwise>
+	       	  1&lt;&gt;1
+	       </otherwise>
+	     </choose>
+	  </where>
+	</delete>  
+	<delete id="BatchDeleteCoach">
+	  delete from coach_table ct
+	   <where>
+	     ct.coahcid in 
+	     <foreach collection="list" item="coahcid" open="(" separator="," close=")">
+	       #{coahcid}
+	     </foreach>
+	   </where>
+	</delete>
+	<select id="QueryCoachById" resultType="java.util.List">
+	   select <include refid="operationParam"/> 
+	     from coach_table ct
+	   where 
+	     ct.coahcid = #{coahcid,jdbcType=INTEGER}
+	</select>
+	<select id="QueryCoachCurrency" resultType="java.util.List">
+	   select <include refid="operationParamIncludeId"/> 
+	     from coach_table ct
+	   <where>
+	     1 = 1
+	     <choose>
+	       <when test="coachvo.drivingid != null or coachvo.drivingid !=''">
+	       	 and ct.drivingid = #{coachvo.drivingid}
+	       </when>
+	       <when test="coachvo.coach_age != null or coachvo.coach_age !=''">
+	       	 and ct.coach_age = #{coachvo.coach_age}
+	       </when>
+	       <when test="coachvo.coach_address != null or coachvo.coach_address !=''">
+	       	 and ct.coach_address = #{coachvo.coach_address}
+	       </when>
+	       <when test="coachvo.coach_sex != null or coachvo.coach_sex !=''">
+	       	 and ct.coach_sex = #{coachvo.coach_sex}
+	       </when>
+	       <when test="coachvo.coach_idcardd != null or coachvo.coach_idcard !=''">
+	       	 and ct.coach_idcard = #{coachvo.coach_idcard}
+	       </when>
+	       <when test="coachvo.coach_number != null or coachvo.coach_number !=''">
+	       	 and ct.coach_number = #{coachvo.coach_number}
+	       </when>
+	       <when test="coachvo.coach_work_time != null or coachvo.coach_work_time !=''">
+	       	 and ct.coach_work_time = #{coachvo.coach_work_time}
+	       </when>
+	       <otherwise>
+	       </otherwise>
+	     </choose>
+	   </where>
+	</select>
+	<update id="UpdateCoach">
+	   update coach_table ct
+	   <set>
+			ct.drivingid = #{coachvo.drivingid},
+			ct.coach_age = #{coachvo.coach_age},
+			ct.coach_address = #{coachvo.coach_address},
+			ct.coach_sex = #{coachvo.coach_sex},
+			ct.coach_idcard = #{coachvo.coach_idcard},
+			ct.coach_number = #{coachvo.coach_number},
+			ct.coach_work_time = #{coachvo.coach_work_time},
+		    ct.updatedate = sysdate()
+	   </set>
+	</update>
+	<insert id="BatchAddCoach"  parameterType="java.util.List">
+	   <selectKey resultType="java.util.Integer" keyProperty="coachid" order="AFTER">
+	      select LAST_INSERT_ID();
+	   </selectKey>
+		insert into coach_table(<include refid="operationParam"/>)
+			values(
+			<foreach collection="list" item="coachvo_list" separator=",">
+			  #{coachvo_list.drivingid},
+			  #{coachvo_list.coach_age},
+			  #{coachvo_list.coach_address},
+			  #{coachvo_list.coach_sex},
+			  #{coachvo_list.coach_idcard},
+			  #{coachvo_list.coach_number},
+			  #{coachvo_list.coach_work_time},
+			  sysdate()
+			</foreach>
+			)
+	</insert>
+</mapper>
