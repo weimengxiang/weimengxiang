@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: jwy-common-service
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: lizhi
+Built-By: Administrator
 Implementation-Vendor-Id: tj.con
-Build-Jdk: 1.8.0_73
+Build-Jdk: 1.8.0_11
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/jwy-parent/jwy-common-service
 Created-By: Maven Integration for Eclipse
