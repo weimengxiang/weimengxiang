@@ -108,22 +108,22 @@
 		    ct.updatedate = sysdate()
 	   </set>
 	</update>
-	<insert id="BatchAddCoach"  parameterType="java.util.List">
-	   <selectKey resultType="java.lang.Integer" keyProperty="coachid" order="AFTER">
+	<insert id="BatchAddCoach" parameterType="java.util.List">
+	   <!-- <selectKey resultType="java.lang.Integer" keyProperty="coachid" order="AFTER">
 	      select LAST_INSERT_ID();
-	   </selectKey>
+	   </selectKey> -->
 		insert into coach_table(<include refid="operationParam"/>)
-			values(
-			<foreach collection="list" item="coachvo_list" separator=",">
-			  #{coachvo_list.drivingid},
+			values
+			<foreach collection="coachvo_list" item="coachvo_list" separator=",">
+			 ( #{coachvo_list.drivingid},
 			  #{coachvo_list.coach_age},
 			  #{coachvo_list.coach_address},
 			  #{coachvo_list.coach_sex},
 			  #{coachvo_list.coach_idcard},
 			  #{coachvo_list.coach_number},
 			  #{coachvo_list.coach_work_time},
-			  sysdate()
+			  sysdate())
 			</foreach>
-			)
+			
 	</insert>
 </mapper>

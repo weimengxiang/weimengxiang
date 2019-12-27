@@ -10,18 +10,42 @@ import cn.tj.informationmanage.bean.CoachVO;
  *
  */
 public interface CoachBasicOperationService {
-		//新增教练
+		/**
+		 * 新增教练
+		 * @param coachvo
+		 */
 		public void AddCoach(CoachVO coachvo);
-		//单条删除
+		/**
+		 * 单条删除
+		 * @param coahcid
+		 */
 		public void DeleteCoachById(int coahcid);
-		//批量删除
+		/**
+		 * 批量删除
+		 * @param list
+		 */
 		public void BatchDeleteCoach(List<Integer> list);
-		//根究id查询
+		/**
+		 * 根究id查询
+		 * @param coahcid
+		 * @return
+		 */
 		public List<CoachVO> QueryCoachById(int coahcid);
-		//多条件查询
+		/**
+		 * 多条件查询
+		 * @param coachvo
+		 * @return
+		 */
 		public List<CoachVO> QueryCoachCurrency(CoachVO coachvo);
-		//更新修改
+		/**
+		 * 更新修改
+		 * @param coachvo
+		 */
 		public void UpdateCoach(CoachVO coachvo);
-		//批量新增
-		public int BatchAddCoach(List<CoachVO> list);
+		/**
+		 * 批量新增
+		 * @param list
+		 * @return
+		 */
+		public void BatchAddCoach(List<CoachVO> list);
 }

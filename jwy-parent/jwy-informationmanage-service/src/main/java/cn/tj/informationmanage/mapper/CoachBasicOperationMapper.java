@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
 import cn.tj.informationmanage.bean.CoachVO;
 
 @Mapper
@@ -22,6 +21,6 @@ public interface CoachBasicOperationMapper {
 
 	void UpdateCoach(@Param("coachvo")CoachVO coachvo);
 	
-	int BatchAddCoach(@Param("coachvo_list")List<CoachVO> coachvo_list);
+	void BatchAddCoach(@Param("coachvo_list")List<CoachVO> coachvo_list);
 
 }
