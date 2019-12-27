@@ -119,15 +119,17 @@
    			SELECT LAST_INSERT_ID()
    		</selectKey>
    		insert into driving_table(<include refid="operationParam"/>)
-   		values(
+   		values
    			<foreach collection="list" item="drivingvolist" separator=",">
-   				#{drivingvolist.drivingid_name},
-   				#{drivingvolist.driving_person_name},
-   				#{drivingvolist.driving_registered_address},
-   				#{drivingvolist.driving_number},
-   				#{drivingvolist.driving_registered_amount},
-                sysdate()   				
+   				(
+	   				#{drivingvolist.drivingid_name},
+	   				#{drivingvolist.driving_person_name},
+	   				#{drivingvolist.driving_registered_address},
+	   				#{drivingvolist.driving_number},
+	   				#{drivingvolist.driving_registered_amount},
+	                sysdate()
+                ) 				
    			</foreach>
-   		)
+   		
    </insert>
 </mapper>
