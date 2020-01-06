@@ -1,5 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.tj.informationmanage.mapper.TraineeBasicOperationMapper">
-   
+  <sql id="operationParam">		
+		coachid,
+		trainee_name,
+		trainee_age,
+		trainee_address,
+		trainee_idcard,
+		trainee_number,
+		trainee_sex,
+		updatedate
+	</sql>   
+	<sql id="operationParamIncludeId">
+	    traineeid,
+		coachid,
+		trainee_name,
+		trainee_age,
+		trainee_address,
+		trainee_idcard,
+		trainee_number,
+		trainee_sex,
+		updatedate
+	</sql> 
+   <insert id="AddTrainee">
+   		insert into trainee_table(
+   			 <include refid="operationParam"/>)
+   	    value(
+	   	      #{traineevo.coachid},
+	   	      #{traineevo.trainee_name},
+	   	      #{traineevo.trainee_age},
+	   	      #{traineevo.trainee_address},
+	   	      #{traineevo.trainee_idcard},
+	   	      #{traineevo.trainee_number},
+	   	      #{traineevo.trainee_sex},
+	   	      sysdate()
+   	    )		
+   </insert>
+   <delete id="DeleteTraineeById">
+   	<if test="traineeid !=null or traineeid !=''">
+   	   delete from trainee_table tt where tt.traineeid = #{traineeid}
+   	</if>
+   </delete>
+   <delete id="BatchDeleteTrainee">
+       delete from trainee_table tt
+     <where>
+     	 tt.traineeid in ( 
+     	<foreach collection="listid" item="listid" separator=",">
+     	  #{listid}
+     	</foreach>
+     	)
+     </where>
+   </delete>
+   <select id="QueryTraineeById" resultType="java.util.List">
+    	select <include refid="operationParamIncludeId"/> from trainee_table tt
+    	<where>
+    	 tt.traineeid = #{traineeid}
+    	</where>
+    	order by traineeid
+   </select>
+   <select id="QueryTraineeCurrency" resultType="java.util.List">
+       select <include refid="operationParamIncludeId"/>  from trainee_table tt
+       <where>
+       	1=1
+       	<choose>
+       		<when test="traineevo.coachid != null or traineevo.coachi != ''">
+       			and tt.coachid = #{traineevo.coachid}
+       		</when>
+       		<when test="traineevo.trainee_name != null or traineevo.trainee_name != ''">
+       			and tt.trainee_name like CONCAT('%',#{traineevo.trainee_name},'%')
+       		</when>
+       		<when test="traineevo.trainee_age != null or traineevo.trainee_age != ''">
+       			and tt.trainee_age = #{traineevo.trainee_age}
+       		</when>
+       		<when test="traineevo.trainee_address != null or traineevo.trainee_address != ''">
+       			and tt.trainee_address like CONCAT('%',#{traineevo.trainee_address},'%')
+       		</when>
+       		<when test="traineevo.trainee_idcard != null or traineevo.trainee_idcard != ''">
+       			and tt.trainee_idcard like CONCAT('%',#{traineevo.trainee_idcard},'%')
+       		</when>
+       		<when test="traineevo.trainee_number != null or traineevo.trainee_number != ''">
+       			and tt.trainee_number like CONCAT('%',#{traineevo.trainee_number},'%')
+       		</when>
+       		<when test="traineevo.trainee_sex != null or traineevo.trainee_sex != ''">
+       			and tt.trainee_sex = #{traineevo.trainee_sex}
+       		</when>
+       		<when test="traineevo.updatedate != null or traineevo.updatedate != ''">
+       			and tt.updatedate = #{traineevo.updatedate}
+       		</when>
+       		<otherwise>
+       		</otherwise>
+       	</choose>
+       </where>
+   </select>
+   <update id="UpdateTrainee">
+   		update from trainee_table tt
+   		<set>
+   			tt.coachid = #{traineevo.coachid},
+   			tt.trainee_name = #{traineevo.trainee_name},
+   			tt.trainee_age = #{traineevo.trainee_age},
+   			tt.trainee_address = #{traineevo.trainee_address},
+   			tt.trainee_idcard = #{traineevo.trainee_idcard},
+   			tt.trainee_number = #{traineevo.trainee_number},
+   			tt.trainee_sex = #{traineevo.trainee_sex},
+   			sysdate()
+   		</set>
+   </update>
+   <insert id="BatchAddTrainee">
+	   	insert into trainee_table(<include refid="operationParam"/>)
+	  	 	values
+	   		<foreach collection="list_traineevo" item="list_traineevo" separator=",">
+	   		(
+	   			#{list_traineevo.coachid},
+	   			#{list_traineevo.trainee_name},
+	   			#{list_traineevo.trainee_age},
+	   			#{list_traineevo.trainee_address},
+	   			#{list_traineevo.trainee_idcard},
+	   			#{list_traineevo.trainee_number},
+	   			#{list_traineevo.trainee_sex},
+	   			sysdate()
+	   	    )
+	   		</foreach>
+	  
+   </insert>
 </mapper>

@@ -58,21 +58,22 @@
    </select>
    <select id="QueryDrivingCurrency" resultType="java.util.List">
      select <include refid="operationParamIncludeId"/>
-   		 from driving_table
+   		 from driving_table dt
      <where>
         1 = 1
         <choose>
            <when test="drivingvo.drivingid_name!=null or drivingvo.drivingid_name!=''">
-            and drivingid_name = #{drivingvo.drivingid_name}
+            and drivingid_name like CONCAT('%',#{drivingvo.drivingid_name},'%')
+            <!-- and drivingid_name like "%"#{drivingvo.drivingid_name}"%" -->
            </when>
            <when test="drivingvo.driving_person_name!=null or drivingvo.driving_person_name!=''">
-            and driving_person_name = #{drivingvo.driving_person_name}
+            and driving_person_name like CONCAT('%',#{drivingvo.driving_person_name},'%')
            </when>
            <when test="drivingvo.driving_registered_address!=null or drivingvo.driving_registered_address!=''">
-            and driving_registered_address = #{drivingvo.driving_registered_address}
+            and driving_registered_address like CONCAT('%',#{drivingvo.driving_registered_address},'%')
            </when>
            <when test="drivingvo.driving_number!=null or drivingvo.driving_number!=''">
-            and driving_number = #{drivingvo.driving_number}
+            and driving_number like CONCAT('%',#{drivingvo.driving_number},'%')
            </when>
            <when test="drivingvo.driving_registered_amount!=null or drivingvo.driving_registered_amount!=''">
             and driving_registered_amount = #{drivingvo.driving_registered_amount}
@@ -81,7 +82,9 @@
            
            </otherwise>
         </choose>
+        
      </where> 
+     order by dt.drivingid 
    </select>
    <update id="UpdateDriving">
       update driving_table dt 

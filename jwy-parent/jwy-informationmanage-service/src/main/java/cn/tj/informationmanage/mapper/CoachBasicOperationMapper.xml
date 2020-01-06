@@ -76,16 +76,16 @@
 	       	 and ct.coach_age = #{coachvo.coach_age}
 	       </when>
 	       <when test="coachvo.coach_address != null or coachvo.coach_address !=''">
-	       	 and ct.coach_address = #{coachvo.coach_address}
+	       	 and ct.coach_address like CONCAT('%',#{coachvo.coach_address},'%')
 	       </when>
 	       <when test="coachvo.coach_sex != null or coachvo.coach_sex !=''">
 	       	 and ct.coach_sex = #{coachvo.coach_sex}
 	       </when>
 	       <when test="coachvo.coach_idcardd != null or coachvo.coach_idcard !=''">
-	       	 and ct.coach_idcard = #{coachvo.coach_idcard}
+	       	 and ct.coach_idcard like CONCAT('%',#{coachvo.coach_idcard},'%')
 	       </when>
 	       <when test="coachvo.coach_number != null or coachvo.coach_number !=''">
-	       	 and ct.coach_number = #{coachvo.coach_number}
+	       	 and ct.coach_number like CONCAT('%',#{coachvo.coach_number},'%')
 	       </when>
 	       <when test="coachvo.coach_work_time != null or coachvo.coach_work_time !=''">
 	       	 and ct.coach_work_time = #{coachvo.coach_work_time}
