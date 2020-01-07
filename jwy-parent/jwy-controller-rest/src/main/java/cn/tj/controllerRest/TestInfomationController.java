@@ -22,7 +22,8 @@ public class TestInfomationController {
 	
 	@RequestMapping(value="/addCoahc")
 	public String addCoahc(){
-		CoachVO  coach = new CoachVO();
+		coachbasicoperationservice.AddCoach(new CoachVO());
+		/*CoachVO  coach = new CoachVO();
 		CoachVO  coach2 = new CoachVO();
 		coach.setCoach_name("wmx");
 		coach.setCoach_address("广西");
@@ -42,7 +43,7 @@ public class TestInfomationController {
 		coachList.add(coach);
 		coachList.add(coach2);
 		coachbasicoperationservice.BatchAddCoach(coachList);
-		
+		*/
 		return "";
 	}
 	

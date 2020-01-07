@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import cn.tj.informationmanage.bean.CoachVO;
+import cn.tj.informationmanage.handler.ResultBody;
 import cn.tj.informationmanage.mapper.CoachBasicOperationMapper;
 import cn.tj.informationmanage.service.CoachBasicOperationService;
 
@@ -17,7 +18,9 @@ public class CoachBasicOperationServiceImp implements CoachBasicOperationService
 	
 	@Override
 	public void AddCoach(CoachVO coachvo) {
-		coachbasicoperationmapper.AddCoach(coachvo);
+		String str = null;
+		str.equals("2222");
+		//coachbasicoperationmapper.AddCoach(coachvo);
 		
 	}
 
