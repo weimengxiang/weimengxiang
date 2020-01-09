@@ -8,6 +8,8 @@ import cn.tj.informationmanage.bean.CoachVO;
 import cn.tj.informationmanage.handler.ResultBody;
 import cn.tj.informationmanage.mapper.CoachBasicOperationMapper;
 import cn.tj.informationmanage.service.CoachBasicOperationService;
+import cn.tj.informationmanage.util.annotation.InterfaceMonitor;
+import cn.tj.informationmanage.util.annotation.Operation;
 
 
 @Service
@@ -18,9 +20,7 @@ public class CoachBasicOperationServiceImp implements CoachBasicOperationService
 	
 	@Override
 	public void AddCoach(CoachVO coachvo) {
-		String str = null;
-		str.equals("2222");
-		//coachbasicoperationmapper.AddCoach(coachvo);
+		coachbasicoperationmapper.AddCoach(coachvo);
 		
 	}
 
@@ -52,6 +52,7 @@ public class CoachBasicOperationServiceImp implements CoachBasicOperationService
 	}
 
 	@Override
+	@InterfaceMonitor()
 	public void BatchAddCoach(List<CoachVO> list) {
 		coachbasicoperationmapper.BatchAddCoach(list);
 		

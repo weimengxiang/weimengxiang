@@ -20,10 +20,10 @@ public class TestInfomationController {
 	@Reference
 	CoachBasicOperationService coachbasicoperationservice;
 	
-	@RequestMapping(value="/addCoahc")
+	@RequestMapping(value="/addCoahc",produces = "application/json;charset=UTF-8")
 	public String addCoahc(){
-		coachbasicoperationservice.AddCoach(new CoachVO());
-		/*CoachVO  coach = new CoachVO();
+		
+		CoachVO  coach = new CoachVO();
 		CoachVO  coach2 = new CoachVO();
 		coach.setCoach_name("wmx");
 		coach.setCoach_address("广西");
@@ -38,12 +38,11 @@ public class TestInfomationController {
 		coach2.setCoach_idcard("233723826286333");
 		coach2.setCoach_number("1234567890");
 		coach2.setCoach_sex("0");
-		
 		List<CoachVO> coachList = new ArrayList<CoachVO>();
 		coachList.add(coach);
 		coachList.add(coach2);
 		coachbasicoperationservice.BatchAddCoach(coachList);
-		*/
+		
 		return "";
 	}
 	
