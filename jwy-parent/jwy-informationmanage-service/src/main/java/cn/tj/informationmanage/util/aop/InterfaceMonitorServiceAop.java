@@ -47,7 +47,7 @@ public class InterfaceMonitorServiceAop {
 	}
 	
 	@Around("ServiceAspectinit()")
-    public Object aroundMethod(ProceedingJoinPoint joinPoint){
+    public Object aroundMethod(ProceedingJoinPoint joinPoint) throws Throwable{
         Object result = null;
         Stopwatch stopwatch = Stopwatch.createStarted();
         try {
@@ -56,13 +56,15 @@ public class InterfaceMonitorServiceAop {
         	LOG.info("调用参数："+ Lists.newArrayList(joinPoint.getArgs()));
         	LOG.info("服务结束！："+joinPoint.getSignature()+", 返回");
         	LOG.info("耗时间："+stopwatch.stop().elapsed(TimeUnit.MILLISECONDS)+"毫秒");
-        	HttpServletRequest httpservletrequest =   ((HttpServletRequest) ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()));
+        	/*HttpServletRequest httpservletrequest =   ((HttpServletRequest) ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()));
         	StringBuffer url = httpservletrequest.getRequestURL();
-        	LOG.info("url ："+url);
+        	LOG.info("url ："+url);*/
+        	
 		} catch (Exception e) {
 			 throw(e);
 		}
-        return result;
+        //执行目标方法
+        return joinPoint.proceed();
     }
 	
 	@Before("ServiceAspectinit()")
