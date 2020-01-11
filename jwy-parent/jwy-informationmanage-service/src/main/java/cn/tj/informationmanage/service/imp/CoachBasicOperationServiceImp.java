@@ -73,7 +73,7 @@ public class CoachBasicOperationServiceImp implements CoachBasicOperationService
 		//创建计数器
 		CountDownLatch star = new CountDownLatch(1);
 		CountDownLatch end = new CountDownLatch(runsize);
-		//https://blog.csdn.net/u010682330/article/details/81110494
+		//ttps://blog.csdn.net/u010682330/article/details/81110494
 		
 		
 		coachbasicoperationmapper.BatchAddCoach(list);
@@ -121,6 +121,17 @@ public class CoachBasicOperationServiceImp implements CoachBasicOperationService
 			result+=random.nextInt(10);
 		}
 		return sb.append(result).toString();
+		
+	}
+	//拆分数据
+	public List<CoachVO> splitList(List<CoachVO> list,int start,int end){
+		
+		List<CoachVO> spliList = new LinkedList<>();
+		
+		for(int i=start;i<end;i++) {
+			spliList.add(list.get(i));
+		}
+		return spliList;
 		
 	}
 
