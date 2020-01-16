@@ -1,8 +1,13 @@
 package cn.tj.controllerRest;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.tomcat.jni.Thread;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,19 +15,19 @@ import com.alibaba.dubbo.config.annotation.Reference;
 
 import cn.tj.informationmanage.bean.CoachVO;
 import cn.tj.informationmanage.service.CoachBasicOperationService;
-import cn.tj.informationmanage.service.TestService;
 
 @RestController
 @RequestMapping("/informationmanage")
 public class TestInfomationController {
 	
-	
-	@Reference
+	private static final Logger LOG = LogManager.getLogger(TestInfomationController.class);
+   
+	@Reference(version="1.0.0",retries = 0,timeout=2000000)
 	CoachBasicOperationService coachbasicoperationservice;
 	
 	@RequestMapping(value="/addCoahc",produces = "application/json;charset=UTF-8")
 	public String addCoahc(){
-		
+		/*
 		CoachVO  coach = new CoachVO();
 		CoachVO  coach2 = new CoachVO();
 		coach.setCoach_name("wmx");
@@ -40,13 +45,17 @@ public class TestInfomationController {
 		coach2.setCoach_sex("0");
 		List<CoachVO> coachList = new ArrayList<CoachVO>();
 		coachList.add(coach);
-		coachList.add(coach2);
-		coachbasicoperationservice.BatchAddCoach(coachList);
+		coachList.add(coach2);*/
 		
-		return "";
+		new Runnable() {			
+			@Override
+			public void run() {
+				System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+				coachbasicoperationservice.BatchAddCoach(new ArrayList<>());
+			}
+		}.run();
+			
+		return "sss";
 	}
 	
-	
-
-
 }
