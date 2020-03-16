@@ -23,4 +23,6 @@ public interface CoachBasicOperationMapper {
 	
 	void BatchAddCoach(@Param("coachvo_list")List<CoachVO> coachvo_list);
 
+	List<CoachVO> QueryCoachDataAll();
+
 }

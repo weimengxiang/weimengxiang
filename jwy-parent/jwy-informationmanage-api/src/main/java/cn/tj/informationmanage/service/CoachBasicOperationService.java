@@ -1,6 +1,9 @@
 package cn.tj.informationmanage.service;
 
 import java.util.List;
+
+import com.github.pagehelper.PageInfo;
+
 import cn.tj.informationmanage.bean.CoachVO;
 /**
  * 
@@ -48,4 +51,12 @@ public interface CoachBasicOperationService {
 		 * @return
 		 */
 		public void BatchAddCoach(List<CoachVO> list);
+		/**
+		 *
+		 * 分页查询数据 
+		 * @param
+		 * @return
+		 */
+		public PageInfo<CoachVO> QueryCoachDataAll(int pageNum,int pageSize);
+	
 }

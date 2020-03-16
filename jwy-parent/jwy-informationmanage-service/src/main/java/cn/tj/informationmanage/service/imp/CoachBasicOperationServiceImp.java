@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.common.base.Stopwatch;
 
 import cn.tj.informationmanage.bean.CoachVO;
@@ -298,6 +300,14 @@ public class CoachBasicOperationServiceImp implements CoachBasicOperationService
 				return sb.append(result).toString();
 				
 			}
+
+	@Override
+	public PageInfo<CoachVO> QueryCoachDataAll(int pageNum,int pageSize) {
+		PageHelper.startPage(pageNum, pageSize);//插件分页
+		List<CoachVO> datalist = coachbasicoperationmapper.QueryCoachDataAll();
+		PageInfo<CoachVO> pageinfo = new PageInfo<>(datalist);
+		return pageinfo;
+	}
 
  
 	
