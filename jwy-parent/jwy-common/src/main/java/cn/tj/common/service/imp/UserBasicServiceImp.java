@@ -14,9 +14,9 @@ import com.alibaba.fastjson.JSONObject;
 
 import cn.tj.common.bean.UserLoginBean;
 import cn.tj.common.mapper.UserBasicServiceMapper;
-import cn.tj.common.service.TokenService;
-import cn.tj.common.service.UserBasicService;
 import cn.tj.common.util.annotation.AnnotationService;
+import cn.tj.service.api.TokenService;
+import cn.tj.service.api.UserBasicService;
 
 
 

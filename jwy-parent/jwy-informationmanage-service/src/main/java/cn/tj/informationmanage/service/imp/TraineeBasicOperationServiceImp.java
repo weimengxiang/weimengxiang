@@ -8,7 +8,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 
 import cn.tj.informationmanage.bean.TraineeVO;
 import cn.tj.informationmanage.mapper.TraineeBasicOperationMapper;
-import cn.tj.informationmanage.service.TraineeBasicOperationService;
+import cn.tj.service.api.TraineeBasicOperationService;
 
 @Service
 public class TraineeBasicOperationServiceImp implements TraineeBasicOperationService {

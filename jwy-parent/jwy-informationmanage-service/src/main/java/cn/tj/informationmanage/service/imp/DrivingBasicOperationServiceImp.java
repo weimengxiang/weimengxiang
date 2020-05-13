@@ -10,7 +10,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 
 import cn.tj.informationmanage.bean.DrivingVO;
 import cn.tj.informationmanage.mapper.DrivingBasicOperationMapper;
-import cn.tj.informationmanage.service.DrivingBasicOperationService;
+import cn.tj.service.api.DrivingBasicOperationService;
 
 @Service
 public class DrivingBasicOperationServiceImp implements DrivingBasicOperationService{

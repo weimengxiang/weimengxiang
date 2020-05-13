@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSONObject;
 import cn.tj.common.bean.UserLoginBean;
-import cn.tj.common.service.UserBasicService;
+import cn.tj.service.api.UserBasicService;
 
 @RestController
 @RequestMapping(value="/UserBasic")

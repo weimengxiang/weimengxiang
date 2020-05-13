@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.tj.informationmanage.bean.CoachVO;
-import cn.tj.informationmanage.service.CoachBasicOperationService;
+import cn.tj.service.api.CoachBasicOperationService;
 
 @RestController
 public class Testcon {

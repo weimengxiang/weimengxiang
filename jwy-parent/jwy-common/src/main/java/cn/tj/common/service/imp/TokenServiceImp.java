@@ -1,8 +1,8 @@
 package cn.tj.common.service.imp;
 import com.alibaba.dubbo.config.annotation.Service;
 
-import cn.tj.common.service.TokenService;
 import cn.tj.common.util.UUIDGenerator;
+import cn.tj.service.api.TokenService;
 
 @Service
 public class TokenServiceImp implements TokenService  {

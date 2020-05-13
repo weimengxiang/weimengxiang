@@ -1,20 +1,26 @@
 package cn.tj.controllerRest;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.tomcat.jni.Thread;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.github.pagehelper.PageInfo;
 
 import cn.tj.informationmanage.bean.CoachVO;
-import cn.tj.informationmanage.service.CoachBasicOperationService;
+import cn.tj.service.api.CoachBasicOperationService;
 
 @RestController
 @RequestMapping("/informationmanage")
@@ -22,31 +28,11 @@ public class TestInfomationController {
 	
 	private static final Logger LOG = LogManager.getLogger(TestInfomationController.class);
    
-	@Reference(version="1.0.0",retries = 0,timeout=2000000)
+	@Reference(version="2.0.0",retries = 0,timeout=2000000)
 	CoachBasicOperationService coachbasicoperationservice;
 	
 	@RequestMapping(value="/addCoahc",produces = "application/json;charset=UTF-8")
 	public String addCoahc(){
-		/*
-		CoachVO  coach = new CoachVO();
-		CoachVO  coach2 = new CoachVO();
-		coach.setCoach_name("wmx");
-		coach.setCoach_address("广西");
-		coach.setCoach_age(1);
-		coach.setCoach_idcard("233723826286333");
-		coach.setCoach_number("1234567890");
-		coach.setCoach_sex("0");
-		
-		coach2.setCoach_name("wmx");
-		coach2.setCoach_address("广西");
-		coach2.setCoach_age(1);
-		coach2.setCoach_idcard("233723826286333");
-		coach2.setCoach_number("1234567890");
-		coach2.setCoach_sex("0");
-		List<CoachVO> coachList = new ArrayList<CoachVO>();
-		coachList.add(coach);
-		coachList.add(coach2);*/
-		
 		new Runnable() {			
 			@Override
 			public void run() {
@@ -54,8 +40,19 @@ public class TestInfomationController {
 				coachbasicoperationservice.BatchAddCoach(new ArrayList<>());
 			}
 		}.run();
-			
-		return "sss";
+		return "success";
+	}
+	
+	@RequestMapping(value="QueryCoachDataAll")
+	public PageInfo<CoachVO> QueryCoachDataAll(@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="15")int pageSize){
+		return coachbasicoperationservice.QueryCoachDataAll(pageNum, pageSize);
+		
+	}
+	@RequestMapping(value="ExeclExport")
+	public void ExeclExport(HttpServletResponse Response,String exportExcelName,String downloadType){
+	    coachbasicoperationservice.ExportExexlByCoach(downloadType,exportExcelName);
+	   
 	}
 	
 }

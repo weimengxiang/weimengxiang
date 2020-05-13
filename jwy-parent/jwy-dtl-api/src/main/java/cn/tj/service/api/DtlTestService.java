@@ -1,4 +1,4 @@
-package cn.tj.dtl.service;
+package cn.tj.service.api;
 
 public interface DtlTestService {
 

@@ -1,6 +1,10 @@
-package cn.tj.informationmanage.service;
+package cn.tj.service.api;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.github.pagehelper.PageInfo;
 
@@ -58,5 +62,12 @@ public interface CoachBasicOperationService {
 		 * @return
 		 */
 		public PageInfo<CoachVO> QueryCoachDataAll(int pageNum,int pageSize);
+		
+		/**
+		 * 教练表全表数据导出到Execl到本地
+		 * @param
+		 * @return
+		 */
+		public void  ExportExexlByCoach(String downloadType,String exportExcelName);
 	
 }

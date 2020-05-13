@@ -1,4 +1,4 @@
-package cn.tj.common.service;
+package cn.tj.service.api;
 import cn.tj.common.bean.UserLoginBean;
 
 public interface UserServiceI {

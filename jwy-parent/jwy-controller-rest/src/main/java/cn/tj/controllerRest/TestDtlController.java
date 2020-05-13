@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 
-import cn.tj.dtl.service.DtlTestService;
+import cn.tj.service.api.DtlTestService;
 
 @RestController
 public class TestDtlController {

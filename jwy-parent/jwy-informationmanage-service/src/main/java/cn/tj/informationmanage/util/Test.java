@@ -4,7 +4,7 @@ import java.util.concurrent.Executors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import cn.tj.informationmanage.service.CoachBasicOperationService;
+import cn.tj.service.api.CoachBasicOperationService;
 public class Test {
 	@Autowired
 	CoachBasicOperationService coachbasicoperationservice;

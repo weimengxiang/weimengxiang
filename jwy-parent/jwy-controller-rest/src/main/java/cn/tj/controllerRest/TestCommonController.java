@@ -12,8 +12,8 @@ import com.alibaba.dubbo.config.annotation.Reference;
 
 import cn.tj.annocation.ApiIdempotent;
 import cn.tj.common.bean.UserLoginBean;
-import cn.tj.common.service.TestServiceApi;
-import cn.tj.common.service.UserServiceI;
+import cn.tj.service.api.TestServiceApi;
+import cn.tj.service.api.UserServiceI;
 
 @RestController
 public class TestCommonController {

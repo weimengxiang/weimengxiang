@@ -1,4 +1,4 @@
-package cn.tj.informationmanage.service;
+package cn.tj.service.api;
 
 public interface TestService {
  

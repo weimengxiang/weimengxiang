@@ -11,9 +11,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import cn.tj.common.bean.UserLoginBean;
 import cn.tj.common.mapper.UserMapper;
-import cn.tj.common.service.UserServiceI;
 import cn.tj.common.util.HandleResult;
 import cn.tj.common.util.annotation.AnnotationService;
+import cn.tj.service.api.UserServiceI;
 
 @Service
 @CacheConfig(cacheNames="users")

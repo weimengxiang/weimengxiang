@@ -126,7 +126,7 @@
 			</foreach>
 			
 	</insert>
-	<select id="QueryCoachDataAll" resultType="java.util.List">
+	<select id="QueryCoachDataAll" resultType="cn.tj.informationmanage.bean.CoachVO">
 		 select 
 			 <include refid="operationParamIncludeId"/>
 		 from 
