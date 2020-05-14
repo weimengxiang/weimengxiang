@@ -20,8 +20,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
-import javax.servlet.http.HttpServletResponse;
-
+import cn.tj.service.api.TestServiceApi;
+import com.alibaba.dubbo.config.annotation.Reference;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.hssf.util.HSSFColor;
@@ -67,6 +67,8 @@ public class CoachBasicOperationServiceImp implements CoachBasicOperationService
 
 	@Autowired
 	CoachBasicOperationMapper coachbasicoperationmapper;
+	@Reference(check = false)
+	TestServiceApi testServiceApi;
 	
 	@Override
 	public void AddCoach(CoachVO coachvo) {
@@ -86,7 +88,10 @@ public class CoachBasicOperationServiceImp implements CoachBasicOperationService
 
 	@Override
 	public List<CoachVO> QueryCoachById(int coahcid) {
+        String str = testServiceApi.test(1);
+        LOG.info("相互调用成功,返回后果。。。。。。。。。。。"+str);
 		List<CoachVO> list = coachbasicoperationmapper.QueryCoachById(coahcid);
+		list.forEach(a->System.out.println(a.coach_address));
 		return list;
 	}
 

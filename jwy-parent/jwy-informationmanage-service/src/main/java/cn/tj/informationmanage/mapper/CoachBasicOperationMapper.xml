@@ -57,11 +57,11 @@
 	     </foreach>
 	   </where>
 	</delete>
-	<select id="QueryCoachById" resultType="java.util.List">
+	<select id="QueryCoachById" resultType="cn.tj.informationmanage.bean.CoachVO">
 	   select <include refid="operationParam"/> 
 	     from coach_table ct
 	   where 
-	     ct.coahcid = #{coahcid,jdbcType=INTEGER}
+	     ct.coachid = #{coahcid,jdbcType=INTEGER}
 	</select>
 	<select id="QueryCoachCurrency" resultType="java.util.List">
 	   select <include refid="operationParamIncludeId"/> 

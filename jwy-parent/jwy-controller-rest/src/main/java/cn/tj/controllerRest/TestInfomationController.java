@@ -2,6 +2,7 @@ package cn.tj.controllerRest;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +54,10 @@ public class TestInfomationController {
 	public void ExeclExport(HttpServletResponse Response,String exportExcelName,String downloadType){
 	    coachbasicoperationservice.ExportExexlByCoach(downloadType,exportExcelName);
 	   
+	}
+	@RequestMapping(value = "QueryCoachById")
+	public void  QueryCoachById(){
+		coachbasicoperationservice.QueryCoachById(1);
 	}
 	
 }
