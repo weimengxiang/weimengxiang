@@ -27,7 +27,7 @@ import cn.tj.service.api.CoachBasicOperationService;
 public class TestInfomationController {
 	
 	private static final Logger LOG = LogManager.getLogger(TestInfomationController.class);
-   
+
 	@Reference(version="2.0.0",retries = 0,timeout=2000000)
 	CoachBasicOperationService coachbasicoperationservice;
 	
