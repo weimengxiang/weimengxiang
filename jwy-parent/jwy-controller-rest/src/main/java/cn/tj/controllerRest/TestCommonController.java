@@ -16,6 +16,7 @@ import cn.tj.service.api.TestServiceApi;
 import cn.tj.service.api.UserServiceI;
 
 @RestController
+@RequestMapping(value = "Common")
 public class TestCommonController {
 	private static final Logger LOG = LogManager.getLogger(TestCommonController.class);
 	@Reference

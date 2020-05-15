@@ -91,7 +91,7 @@ public class CoachBasicOperationServiceImp implements CoachBasicOperationService
         String str = testServiceApi.test(1);
         LOG.info("相互调用成功,返回后果。。。。。。。。。。。"+str);
 		List<CoachVO> list = coachbasicoperationmapper.QueryCoachById(coahcid);
-		list.forEach(a->System.out.println(a.coach_address));
+		list.forEach(arr->System.out.println(arr.coach_address));
 		return list;
 	}
 

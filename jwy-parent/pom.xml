@@ -27,5 +27,6 @@
 		<module>jwy-sysnotice-service</module>
 		<module>jwy-bdspark-api</module>
 		<module>jwy-bdspqrk-service</module>
+		<module>jwy-zuul-test</module>
 	</modules>
 </project>
