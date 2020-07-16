@@ -22,9 +22,11 @@ import com.github.pagehelper.PageInfo;
 
 import cn.tj.informationmanage.bean.CoachVO;
 import cn.tj.service.api.CoachBasicOperationService;
+import io.swagger.annotations.Api;
 
 @RestController
 @RequestMapping("/informationmanage")
+@Api(value = "用户信息查询",tags = {"用户信息的controller"})
 public class TestInfomationController {
 	
 	private static final Logger LOG = LogManager.getLogger(TestInfomationController.class);

@@ -2,7 +2,6 @@ package cn.tj.informationmanage.service.imp;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,16 +11,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
-import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-
-import cn.tj.service.api.TestServiceApi;
-import com.alibaba.dubbo.config.annotation.Reference;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.hssf.util.HSSFColor;
@@ -37,17 +32,16 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
-import com.fasterxml.jackson.annotation.JacksonInject.Value;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.base.Stopwatch;
-
 import cn.tj.informationmanage.bean.CoachVO;
 import cn.tj.informationmanage.mapper.CoachBasicOperationMapper;
 import cn.tj.informationmanage.util.annotation.InterfaceMonitor;
 import cn.tj.service.api.CoachBasicOperationService;
+import cn.tj.service.api.TestServiceApi;
 
 
 //@Service(version="2.0.0",retries=0)
@@ -56,7 +50,6 @@ import cn.tj.service.api.CoachBasicOperationService;
         application = "${dubbo.application.id}",
         protocol = "${dubbo.protocol.id}",
         registry = "${dubbo.registry.id}")
-
 public class CoachBasicOperationServiceImp implements CoachBasicOperationService{
 
 	/**
@@ -80,12 +73,11 @@ public class CoachBasicOperationServiceImp implements CoachBasicOperationService
 	public void DeleteCoachById(int coahcid) {
 		coachbasicoperationmapper.DeleteCoachById(coahcid);	
 	}
-
 	@Override
 	public void BatchDeleteCoach(List<Integer> list) {
 		coachbasicoperationmapper.BatchDeleteCoach(list);		
 	}
-
+	
 	@Override
 	public List<CoachVO> QueryCoachById(int coahcid) {
         String str = testServiceApi.test(1);
@@ -94,18 +86,15 @@ public class CoachBasicOperationServiceImp implements CoachBasicOperationService
 		list.forEach(arr->System.out.println(arr.coach_address));
 		return list;
 	}
-
 	@Override
 	public List<CoachVO> QueryCoachCurrency(CoachVO coachvo) {
 		List<CoachVO> list = coachbasicoperationmapper.QueryCoachCurrency(coachvo);
 		return null;
 	}
-
 	@Override
 	public void UpdateCoach(CoachVO coachvo) {
 		coachbasicoperationmapper.UpdateCoach(coachvo);		
 	}
-
 	@Override
 	@InterfaceMonitor()
 	public void BatchAddCoach(List<CoachVO> list) {
