@@ -22,6 +22,7 @@ import com.github.pagehelper.PageInfo;
 
 import cn.tj.informationmanage.bean.CoachVO;
 import cn.tj.service.api.CoachBasicOperationService;
+import cn.tj.service.api.CoachGttHanderService;
 import io.swagger.annotations.Api;
 
 @RestController
@@ -33,6 +34,8 @@ public class TestInfomationController {
 
 	@Reference(version="2.0.0",retries = 0,timeout=2000000)
 	CoachBasicOperationService coachbasicoperationservice;
+	@Reference(version = "2.0.0",retries = 0,timeout = 100)
+	CoachGttHanderService coachgtthanderservice;
 	
 	@RequestMapping(value="/addCoahc",produces = "application/json;charset=UTF-8")
 	public String addCoahc(){
@@ -60,6 +63,10 @@ public class TestInfomationController {
 	@RequestMapping(value = "QueryCoachById")
 	public void  QueryCoachById(){
 		coachbasicoperationservice.QueryCoachById(1);
+	}
+	@RequestMapping(value = "")
+	public int CoachGttHander(int par){
+		return coachgtthanderservice.GttHander(par);
 	}
 	
 }
