@@ -10,10 +10,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.connector.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -64,7 +66,7 @@ public class TestInfomationController {
 	public void  QueryCoachById(){
 		coachbasicoperationservice.QueryCoachById(1);
 	}
-	@RequestMapping(value = "")
+	@RequestMapping(value = "CoachGttHander",method = RequestMethod.POST)
 	public int CoachGttHander(int par){
 		return coachgtthanderservice.GttHander(par);
 	}

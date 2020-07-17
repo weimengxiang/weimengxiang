@@ -126,10 +126,20 @@
 			</foreach>
 			
 	</insert>
+	
 	<select id="QueryCoachDataAll" resultType="cn.tj.informationmanage.bean.CoachVO">
 		 select 
 			 <include refid="operationParamIncludeId"/>
 		 from 
 		   	 coach_table
 	</select>
+	
+    <update id="updateCoachData">
+        update coach_table coach
+        <set>
+          coach.coach_idcard = #{coachID},
+          coach.coach_dzsize = #{DZSize},
+          coach.updatedate = sysdate()
+        </set>
+    </update>	
 </mapper>

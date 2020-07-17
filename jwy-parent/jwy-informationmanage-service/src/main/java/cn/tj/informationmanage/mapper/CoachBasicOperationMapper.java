@@ -24,5 +24,7 @@ public interface CoachBasicOperationMapper {
 	void BatchAddCoach(@Param("coachvo_list")List<CoachVO> coachvo_list);
 
 	List<CoachVO> QueryCoachDataAll();
+	
+	void updateCoachData(@Param("coachID")String coachID,@Param("DZSize")int DZSize);
 
 }

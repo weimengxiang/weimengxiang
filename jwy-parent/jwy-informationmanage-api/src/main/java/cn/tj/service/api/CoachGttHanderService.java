@@ -13,4 +13,8 @@ public interface CoachGttHanderService {
      * @return
      */
 	public int GttHander(int tager);
+    /**
+     * 同步数据到mysql
+     */
+	public void SynchCoachData();
 }
